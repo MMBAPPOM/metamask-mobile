@@ -9,6 +9,8 @@ import asyncInvoke from './invoke-lib';
 // @ts-ignore
 import { html } from './ppom.html.js';
 
+import { fromByteArray } from 'react-native-quick-base64';
+
 const styles = StyleSheet.create({
   webViewContainer: {
     position: 'absolute',
@@ -24,7 +26,7 @@ const convertFilesToBase64 = (files: any[][]) =>
   files.map(([key, value]) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-    const base64 = window.Buffer.from(value).toString('base64');
+    const base64 = fromByteArray(value);
     return [key, base64];
   });
 
