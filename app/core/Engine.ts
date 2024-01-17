@@ -1029,7 +1029,11 @@ class Engine {
     if (isBlockaidFeatureEnabled()) {
       try {
         const ppomController = new PPOMController({
-          chainId: addHexPrefix(networkController.state.providerConfig.chainId),
+          chainId: addHexPrefix(
+            parseInt(networkController.state.providerConfig.chainId).toString(
+              16,
+            ),
+          ),
           blockaidPublicKey: process.env.BLOCKAID_PUBLIC_KEY as string,
           cdnBaseUrl: process.env.BLOCKAID_FILE_CDN as string,
           messenger: this.controllerMessenger.getRestricted({

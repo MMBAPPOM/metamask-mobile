@@ -101,7 +101,6 @@ const BlockaidBanner = (bannerProps: BlockaidBannerProps) => {
   if (
     !securityAlertResponse ||
     !isBlockaidFeatureEnabled() ||
-    !isMainnetByChainId(chainId) ||
     !isSecurityAlertsEnabled
   ) {
     return null;
