@@ -1,7 +1,7 @@
 import { MMKV } from 'react-native-mmkv';
 import { StorageBackend, StorageKey } from '@metamask/ppom-validator';
 
-import { base64toArrayBuffer } from './array-buffer';
+import { getArrayBufferForBlob } from 'react-native-blob-jsi-helper';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -13,17 +13,8 @@ if (window.FileReader?.prototype.readAsArrayBuffer) {
     this._setReadyState(this.LOADING);
     this._result = null;
     this._error = null;
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    const fr = new window.FileReader();
-    fr.onloadend = () => {
-      const b64 = fr.result.substr(
-        'data:application/octet-stream;base64,'.length,
-      );
-      this._result = base64toArrayBuffer(b64);
-      this._setReadyState(this.DONE);
-    };
-    fr.readAsDataURL(blob);
+    this._result = getArrayBufferForBlob(blob);
+    this._setReadyState(this.DONE);
   };
 }
 
