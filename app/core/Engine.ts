@@ -1032,7 +1032,8 @@ class Engine {
         // @ts-expect-error react-native-crypto is not typed
         globalThis.reactNativeCrypto = Crypto;
         const ppomController = new PPOMController({
-          chainId: addHexPrefix(networkController.state.providerConfig.chainId),
+          // chainId is wrong in the entire code of metamask-mobile - it is a decimal as string.
+          chainId: addHexPrefix(parseInt(networkController.state.providerConfig.chainId).toString(16)),
           blockaidPublicKey: process.env.BLOCKAID_PUBLIC_KEY as string,
           cdnBaseUrl: process.env.BLOCKAID_FILE_CDN as string,
           messenger: this.controllerMessenger.getRestricted({
