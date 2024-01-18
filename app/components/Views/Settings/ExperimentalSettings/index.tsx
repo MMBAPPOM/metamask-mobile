@@ -142,7 +142,6 @@ const ExperimentalSettings = ({ navigation, route }: Props) => {
           style={styles.switch}
           ios_backgroundColor={colors.border.muted}
           testID={SECURITY_ALERTS_TOGGLE_TEST_ID}
-          disabled={!isMainnetByChainId(currentChainId)}
         />
       </View>
 
