@@ -26,7 +26,7 @@ class RNFSStorageBackend implements StorageBackend {
   }
 
   private _getDataFilePath(key: StorageKey): string {
-    return `${key.name}--${key.chainId}`;
+    return `${key.name}-${key.chainId}`;
   }
 
   public async read(key: StorageKey, _checksum: string): Promise<ArrayBuffer> {

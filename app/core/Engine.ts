@@ -1032,11 +1032,7 @@ class Engine {
         // @ts-expect-error react-native-crypto is not typed
         globalThis.reactNativeCrypto = Crypto;
         const ppomController = new PPOMController({
-          chainId: addHexPrefix(
-            parseInt(networkController.state.providerConfig.chainId).toString(
-              16,
-            ),
-          ),
+          chainId: addHexPrefix(networkController.state.providerConfig.chainId),
           blockaidPublicKey: process.env.BLOCKAID_PUBLIC_KEY as string,
           cdnBaseUrl: process.env.BLOCKAID_FILE_CDN as string,
           messenger: this.controllerMessenger.getRestricted({
