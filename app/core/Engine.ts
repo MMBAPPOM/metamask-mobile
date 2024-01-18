@@ -176,6 +176,7 @@ import { isHardwareAccount } from '../util/address';
 import { ledgerSignTypedMessage } from './Ledger/Ledger';
 import ExtendedKeyringTypes from '../constants/keyringTypes';
 import { UpdatePPOMInitializationStatus } from '../actions/experimental';
+import Crypto from 'react-native-quick-crypto';
 
 const NON_EMPTY = 'NON_EMPTY';
 
@@ -1028,6 +1029,8 @@ class Engine {
 
     if (isBlockaidFeatureEnabled()) {
       try {
+        // @ts-expect-error react-native-crypto is not typed
+        globalThis.reactNativeCrypto = Crypto;
         const ppomController = new PPOMController({
           chainId: addHexPrefix(
             parseInt(networkController.state.providerConfig.chainId).toString(
