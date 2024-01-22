@@ -45,8 +45,7 @@ const validateRequest = async (req: any, transactionId?: string) => {
   if (
     !isBlockaidFeatureEnabled() ||
     !PreferencesController.state.securityAlertsEnabled ||
-    !ConfirmationMethods.includes(req.method) ||
-    !isMainnetByChainId(currentChainId)
+    !ConfirmationMethods.includes(req.method)
   ) {
     return;
   }
